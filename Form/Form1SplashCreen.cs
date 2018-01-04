@@ -46,10 +46,6 @@ namespace Quanlybanhang
                 frm.Width = (int)key.GetValue("Width", frm.Width);
                 frm.Left = (int)key.GetValue("Left", frm.Left);
                 frm.Top = (int)key.GetValue("Top", frm.Top);
-                //
-
-
-
             }
             catch
             {
