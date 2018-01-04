@@ -1,13 +1,9 @@
 E:\Github\Quanlybanhang\bin\Debug\Quanlybanhang.exe.config
-<<<<<<< HEAD
-E:\Github\Quanlybanhang\obj\Debug\Quanlybanhang.exe
-E:\Github\Quanlybanhang\obj\Debug\Quanlybanhang.pdb
 E:\Github\Quanlybanhang\bin\Debug\Quanlybanhang.exe
 E:\Github\Quanlybanhang\bin\Debug\Quanlybanhang.pdb
-E:\Github\Quanlybanhang\obj\Debug\Quanlybanhang.Properties.Resources.resources
-E:\Github\Quanlybanhang\obj\Debug\Quanlybanhang.csproj.GenerateResource.Cache
-E:\Github\Quanlybanhang\obj\Debug\Quanlybanhang.csprojResolveAssemblyReference.cache
 E:\Github\Quanlybanhang\obj\Debug\Quanlybanhang.Form1.resources
 E:\Github\Quanlybanhang\obj\Debug\Quanlybanhang.Form1SplashCreen.resources
-=======
->>>>>>> 7fad664b2c7ae8e4375958eb785c6008dc3f8ed6
+E:\Github\Quanlybanhang\obj\Debug\Quanlybanhang.Properties.Resources.resources
+E:\Github\Quanlybanhang\obj\Debug\Quanlybanhang.csproj.GenerateResource.Cache
+E:\Github\Quanlybanhang\obj\Debug\Quanlybanhang.exe
+E:\Github\Quanlybanhang\obj\Debug\Quanlybanhang.pdb
