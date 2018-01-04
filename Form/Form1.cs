@@ -136,7 +136,7 @@ namespace Quanlybanhang
                         {
                             MessageBox.Show("x" + x + "x", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
                             //LoadnewForm2();
-                            //this.Close();
+                            
                         }
                     }
                     else
@@ -172,7 +172,7 @@ namespace Quanlybanhang
             //{ this.Visible = true; }
 
             //frm2.Show();
-
+            //this.Close();
         }
 
         //------------------------- Show Form 3 -----------------------------------
