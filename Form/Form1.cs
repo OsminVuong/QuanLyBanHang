@@ -29,7 +29,7 @@ namespace Quanlybanhang
             t.Start();
             SqlConnection Cnn = db._DbContext();
             Cnn.Open();
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             InitializeComponent();
             t.Abort();
         }
@@ -75,18 +75,19 @@ namespace Quanlybanhang
                     strb.Append(kq[i].ToString() + (i == kq.FieldCount - 1 ? "" : ":"));
                 strb.AppendLine();
             }
-            return strb.ToString();
+            return strb.ToString().Trim();
         }
         //--- truy cập và gán vào biến tạm
         private void ShowQuyenhan()
         {
-            SqlConnection Cnn = db._DbContext();
-            Cnn.Open();
+            
             try
             {
-                
-                string tamp = "select Quyenhan from Accounts WHERE MaNV = '" + Taikhoan.Text + "' ";
+                SqlConnection Cnn = db._DbContext();
+                Cnn.Open();
+                string tamp = "select Quyenhan from Accounts WHERE MaNV = @acc ";
                 Cmd = new SqlCommand(tamp, Cnn);
+                Cmd.Parameters.Add(new SqlParameter("@acc", Taikhoan.Text));
                 SqlDataReader dr = Cmd.ExecuteReader();
                 bientam= Xuat_kq(dr);
                 
@@ -120,22 +121,27 @@ namespace Quanlybanhang
                     //Str =Str.Split('0')[1];
                     //Str = Str.Substring(0,1);
                     int x = int.Parse(bientam);
-                    if (x == 1)
-                    {
-                        LoadnewForm4();
-                    }
-                    if (x == 2)
-                    {
-                        LoadnewForm3();
-                    }
-                    if (x == 3)
-                    {
-                        LoadnewForm2(Taikhoan.Text);
-                        this.Close();
+                    if (x > 0) { 
+                        if (x == 1)
+                        {
+                            MessageBox.Show("x" + x + "x", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                            //LoadnewForm4();
+                        }
+                        if (x == 2)
+                        {
+                            MessageBox.Show("x" + x + "x", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                            //LoadnewForm3();
+                        }
+                        if (x == 3)
+                        {
+                            MessageBox.Show("x" + x + "x", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                            //LoadnewForm2();
+                            //this.Close();
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Bạn chưa có quyền Truy Cập Hệ Thống!"+"\nHệ Thống đang cập nhật... Vui lòng liên hệ Quản Trị Viên!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                        MessageBox.Show("Bạn chưa có quyền Truy Cập Hệ Thống!"+"\nHệ Thống đang cập nhật... Vui lòng liên hệ Quản Trị Viên!" + x, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
                     }
                 }
                 else
@@ -158,7 +164,7 @@ namespace Quanlybanhang
 
         }
         //----------------------------- Show Form 2 -----------------------------------
-        private void LoadnewForm2(string Texxt)
+        private void LoadnewForm2()
         {
             //Form2 frm2 = new Form2(Taikhoan.Text);
             //this.Visible = false;
