@@ -58,9 +58,9 @@
             this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label1.Location = new System.Drawing.Point(68, 221);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(252, 25);
+            this.label1.Size = new System.Drawing.Size(259, 25);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Loading... Please wait!";
+            this.label1.Text = "Loading.... Please wait!";
             // 
             // Form1SplashCreen
             // 
