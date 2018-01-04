@@ -1,1 +1,8 @@
 E:\Github\Quanlybanhang\bin\Debug\Quanlybanhang.exe.config
+E:\Github\Quanlybanhang\bin\Debug\Quanlybanhang.exe
+E:\Github\Quanlybanhang\bin\Debug\Quanlybanhang.pdb
+E:\Github\Quanlybanhang\obj\Debug\Quanlybanhang.csprojResolveAssemblyReference.cache
+E:\Github\Quanlybanhang\obj\Debug\Quanlybanhang.Properties.Resources.resources
+E:\Github\Quanlybanhang\obj\Debug\Quanlybanhang.csproj.GenerateResource.Cache
+E:\Github\Quanlybanhang\obj\Debug\Quanlybanhang.exe
+E:\Github\Quanlybanhang\obj\Debug\Quanlybanhang.pdb
