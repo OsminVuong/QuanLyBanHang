@@ -496,7 +496,36 @@ namespace Quanlybanhang
         }
         #endregion=====================================
 
+        #region============ Xuất Hóa Đơn =========
+       
+        private void LuuHD()
+        {
+            //TimtenKH(MakHtext.Text);
+            string File_name = @"D:\\HD" + MaHDtext.Text + ".txt";
+            if (File.Exists(File_name)) File.Delete(File_name); //neu file da co thi xoa di
+            FileStream myFile = new FileStream(File_name, FileMode.Create);
+            StreamWriter w = new StreamWriter(myFile, Encoding.UTF8);
+            w.WriteLine(" Siêu Thị Mini Hutech Xin Chào!\n");
+            w.WriteLine("\n               HÓA ĐƠN\n");
+            w.WriteLine("\n Mã HD: " + MaHDtext.Text + "\n");
+            w.WriteLine("\n Mã KH: " + MakHtext.Text + ", Tên KH: " + Tim_);
+            w.WriteLine("\n Thời Gian: " + day + "-" + month + "-" + year + "  " + hour + ":" + Minute + ":" + second);
+            w.WriteLine(" Tên SP \t SL \t Giá \t Thành Tiền\n");
+            w.WriteLine(" ");
+            for (int i = 0; i < T1.Rows.Count; i++)
+            {
+                for (int j = 0; j < T1.Columns.Count; j++)
+                    w.Write(" " + T1.Rows[i][j].ToString() + "\t");
+                w.WriteLine(" \n\n");
+            }
+            w.WriteLine(" \n");
+            w.WriteLine(" Tổng Tiền: " + TongtienShow.Text + " VND");
+            w.Flush();
+            w.Close();
+            Console.ReadLine();
 
+        }
+        #endregion================================
     }
 
 }
