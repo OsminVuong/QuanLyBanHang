@@ -289,6 +289,11 @@ namespace Quanlybanhang
                     return true;
                 }
             }
+            if (int.Parse(SLtext.Text) < 1)
+            {
+                MessageBox.Show("Lỗi: 'Số Lượng' phải lớn hơn 0!", "Thống Báo Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return true;
+            }
             return false;
         }
         #endregion ===================================
