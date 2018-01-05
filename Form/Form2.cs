@@ -354,7 +354,83 @@ namespace Quanlybanhang
 
         }
         #endregion=========================================
+        #region========= Insert Chi Tiết Hóa Đơn ============
+        private void AddCTHD()
+        {
+            int S = gia * x;
+            string SS = S.ToString();
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string themHD = "INSERT INTO [dbo].[ChitietHD]([MaHD],[MaSP],[SLmua],[Ngaymua],[Thanhtien]) VALUES(@MaHD,@MaSP,@SLmua,@Ngaymua,@Thanhtien)";
+                Cmd = new SqlCommand(themHD, Cnn);
+                Cmd.Parameters.AddWithValue("@MaHD", MaHDtext.Text);
+                Cmd.Parameters.AddWithValue("@MaSP", Masptext.Text);
+                Cmd.Parameters.AddWithValue("@SLmua", SLtext.Text);
+                Cmd.Parameters.AddWithValue("@Ngaymua", _Ngaythang.Text);
+                Cmd.Parameters.AddWithValue("@Thanhtien", S);
+                Cmd.ExecuteNonQuery();
+                Cnn.Close();
+            }
+            catch (SqlException)
 
+            {
+                MessageBox.Show("Lỗi CT Hóa Đơn Table !");
+
+            }
+
+        }
+        #endregion===========================
+        #region========== Insert dữ liệu ==============
+        /// <summary>
+        ///  Truyền dữ liệu vào Database
+        /// </summary>
+        public void Themdulieu()
+        {
+
+            SqlConnection Cnn = db._DbContext();
+            //if (DemSP(Masptext.Text) == true)
+            //{
+            #region======= Tìm Giá của Sản Phẩm ==============
+            try
+            {
+                Cnn.Open();
+                string sql = "select Giaban from Sanpham Where MaSP=@textbox";
+                Cmd = new SqlCommand(sql, Cnn);
+                Cmd.Parameters.Add(new SqlParameter("@textbox", Masptext.Text));
+                object giaban = Cmd.ExecuteScalar();
+                gia = (int)giaban;
+                Cnn.Close();
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi code.timgiaban", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            #endregion ===================================
+            Tong = Tong + gia * x;
+            TongtienShow.Text = Tong.ToString();
+            MaHDshow.Text = MaHDtext.Text;
+            //Insert
+            if (String.Compare(MaHDcover, MaHDtext.Text, true) != 0)
+            {
+                AddHD();
+
+            }
+            AddCTHD();
+            #region==== Đặt dữ liệu cho Textbox==========
+            MaHDcover = MaHDtext.Text;
+            SLtext.Text = string.Empty;
+            Masptext.Text = string.Empty;
+            MaHDcover = MaHDtext.Text;
+            #endregion======================================
+            //}
+
+            //Load Gird
+            LoadGrid(MaHDtext.Text);
+        }
+        #endregion======================================
     }
 
 }
