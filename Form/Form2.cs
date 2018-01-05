@@ -29,9 +29,12 @@ namespace Quanlybanhang
 
         #region==== Biến toàn cục =====
         // Biến tham số
-        
+        int gia = 0;
+        int x = 0;
+        int Tong = 0;
+        string MaHDcover = "";
         string bientam;
-        
+        string Tim_;
         #endregion=====================
 
 
