@@ -474,7 +474,26 @@ namespace Quanlybanhang
 
             }
         }
+        private void Update_Tongtien_HD(string _MaDH)
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string themHD = "UPDATE [dbo].[Hoadon] SET [Tongtien] = @Tongtien WHERE MaHD = @MaHD";
+                Cmd = new SqlCommand(themHD, Cnn);
+                Cmd.Parameters.AddWithValue("@Tongtien", TongtienShow.Text);
+                Cmd.Parameters.AddWithValue("@MaHD", _MaDH);
+                Cmd.ExecuteNonQuery();
+                Cnn.Close();
+            }
+            catch (SqlException)
 
+            {
+                MessageBox.Show("Lỗi Update Tongtien !");
+
+            }
+        }
         #endregion=====================================
 
 
