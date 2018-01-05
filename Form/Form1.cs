@@ -75,7 +75,7 @@ namespace Quanlybanhang
                     strb.Append(kq[i].ToString() + (i == kq.FieldCount - 1 ? "" : ":"));
                 strb.AppendLine();
             }
-            return strb.ToString().Trim();
+            return strb.ToString();
         }
         //--- truy cập và gán vào biến tạm
         private void ShowQuyenhan()
@@ -105,10 +105,11 @@ namespace Quanlybanhang
         public void button1_Click(object sender, EventArgs e)
         {
             ShowQuyenhan();
+            SqlConnection Cnn = db._DbContext();
+            Cnn.Open();
             try
             {
-                SqlConnection Cnn = db._DbContext();
-                Cnn.Open();
+                
 
                 string login_in = "Select Count(*) from Accounts Where ID=@acc and Password=@pass";
                 Cmd = new SqlCommand(login_in, Cnn);
@@ -117,20 +118,18 @@ namespace Quanlybanhang
                 int K = (int)Cmd.ExecuteScalar();
                 if (K == 1)
                 {
-                    //string Str = Taikhoan.Text;
-                    //Str =Str.Split('0')[1];
-                    //Str = Str.Substring(0,1);
+       
                     int x = int.Parse(bientam);
                     if (x > 0) { 
                         if (x == 1)
                         {
                             MessageBox.Show("x" + x + "x", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
-                            //LoadnewForm4();
+                            LoadnewForm4();
                         }
                         if (x == 2)
                         {
                             MessageBox.Show("x" + x + "x", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
-                            //LoadnewForm3();
+                            LoadnewForm4();
                         }
                         if (x == 3)
                         {
@@ -147,15 +146,13 @@ namespace Quanlybanhang
                 else
                 {
                     
-                    MessageBox.Show("Login Failed !!!"+ "\nError: The account and password that you've entered is incorrect. ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                    MessageBox.Show("Login Failed !"+ "\nError: The account and password that you've entered is incorrect. ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
                 }
                 
             }
             catch (Exception)
             {
-                MessageBox.Show("Lỗi kết nối . : . : .' .- ");
-                
-              
+                MessageBox.Show("Lỗi Đăng Nhập");
             }
             
             Taikhoan.Text = string.Empty;
@@ -188,12 +185,12 @@ namespace Quanlybanhang
         //-------------------------------- Show Form 4 -----------------------------
         private void LoadnewForm4()
         {
-            //Form4 frm4 = new Form4(Taikhoan.Text);
-            //this.Visible = false;
-            //if ((new Form4(Taikhoan.Text)).ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            //{ this.Visible = true; }
-            //frm4.Show();
-            //this.Close();
+            Form4 frm4 = new Form4(Taikhoan.Text);
+            this.Visible = false;
+            if ((new Form4(Taikhoan.Text)).ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            { this.Visible = true; }
+            frm4.Show();
+            this.Close();
         }
         //------------------ Button Thoát -----------------------------------------------
         private void button2_Click(object sender, EventArgs e)
