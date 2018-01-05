@@ -118,9 +118,7 @@ namespace Quanlybanhang
                 int K = (int)Cmd.ExecuteScalar();
                 if (K == 1)
                 {
-                    //string Str = Taikhoan.Text;
-                    //Str =Str.Split('0')[1];
-                    //Str = Str.Substring(0,1);
+       
                     int x = int.Parse(bientam);
                     if (x > 0) { 
                         if (x == 1)
