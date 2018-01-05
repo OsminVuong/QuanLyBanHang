@@ -34,8 +34,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
-            this.button1 = new System.Windows.Forms.Button();
-            this.Thongkef2 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -52,7 +50,6 @@
             this.SLtext = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -61,7 +58,6 @@
             this.button5 = new System.Windows.Forms.Button();
             this.Error_Button = new System.Windows.Forms.Button();
             this.MakHtext = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.MaHDtext = new System.Windows.Forms.TextBox();
             this.HD = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -76,36 +72,18 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.Thongkef2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGView)).BeginInit();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.BackgroundImage = global::Quanlybanhang.Properties.Resources.icon__exit;
-            this.button1.Location = new System.Drawing.Point(270, 41);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(73, 79);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "   ";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // Thongkef2
-            // 
-            this.Thongkef2.BackgroundImage = global::Quanlybanhang.Properties.Resources.Thongke1;
-            this.Thongkef2.Location = new System.Drawing.Point(6, 47);
-            this.Thongkef2.Name = "Thongkef2";
-            this.Thongkef2.Size = new System.Drawing.Size(62, 73);
-            this.Thongkef2.TabIndex = 1;
-            this.Thongkef2.Text = "  ";
-            this.Thongkef2.UseVisualStyleBackColor = true;
-            this.Thongkef2.Click += new System.EventHandler(this.Thongkef2_Click);
             // 
             // groupBox1
             // 
@@ -243,6 +221,7 @@
             this.SLtext.Name = "SLtext";
             this.SLtext.Size = new System.Drawing.Size(225, 48);
             this.SLtext.TabIndex = 6;
+            this.SLtext.TextChanged += new System.EventHandler(this.SLtext_TextChanged);
             // 
             // label5
             // 
@@ -263,17 +242,6 @@
             this.label6.Size = new System.Drawing.Size(133, 41);
             this.label6.TabIndex = 8;
             this.label6.Text = "Mã SP:";
-            // 
-            // button2
-            // 
-            this.button2.Image = global::Quanlybanhang.Properties.Resources.login1;
-            this.button2.Location = new System.Drawing.Point(466, 206);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(225, 48);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Thêm SP";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // groupBox3
             // 
@@ -359,15 +327,6 @@
             this.MakHtext.Name = "MakHtext";
             this.MakHtext.Size = new System.Drawing.Size(225, 48);
             this.MakHtext.TabIndex = 3;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::Quanlybanhang.Properties.Resources.logo;
-            this.pictureBox1.Location = new System.Drawing.Point(2, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 33);
-            this.pictureBox1.TabIndex = 13;
-            this.pictureBox1.TabStop = false;
             // 
             // MaHDtext
             // 
@@ -552,6 +511,48 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Lịch";
             // 
+            // button2
+            // 
+            this.button2.Image = global::Quanlybanhang.Properties.Resources.login1;
+            this.button2.Location = new System.Drawing.Point(466, 206);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(225, 48);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Thêm SP";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::Quanlybanhang.Properties.Resources.logo;
+            this.pictureBox1.Location = new System.Drawing.Point(2, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(32, 33);
+            this.pictureBox1.TabIndex = 13;
+            this.pictureBox1.TabStop = false;
+            // 
+            // Thongkef2
+            // 
+            this.Thongkef2.BackgroundImage = global::Quanlybanhang.Properties.Resources.Thongke1;
+            this.Thongkef2.Location = new System.Drawing.Point(6, 47);
+            this.Thongkef2.Name = "Thongkef2";
+            this.Thongkef2.Size = new System.Drawing.Size(62, 73);
+            this.Thongkef2.TabIndex = 1;
+            this.Thongkef2.Text = "  ";
+            this.Thongkef2.UseVisualStyleBackColor = true;
+            this.Thongkef2.Click += new System.EventHandler(this.Thongkef2_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackgroundImage = global::Quanlybanhang.Properties.Resources.icon__exit;
+            this.button1.Location = new System.Drawing.Point(270, 41);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(73, 79);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "   ";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(21F, 41F);
@@ -579,12 +580,12 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGView)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
