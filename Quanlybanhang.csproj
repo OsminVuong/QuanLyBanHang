@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -59,6 +59,12 @@
     <Compile Include="Form\Form1SplashCreen.designer.cs">
       <DependentUpon>Form1SplashCreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\Form4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form4.Designer.cs">
+      <DependentUpon>Form4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form\Form1.resx">
@@ -66,6 +72,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Form1SplashCreen.resx">
       <DependentUpon>Form1SplashCreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form4.resx">
+      <DependentUpon>Form4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -125,5 +134,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-
 </Project>
