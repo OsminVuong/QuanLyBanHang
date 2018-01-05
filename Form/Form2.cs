@@ -234,6 +234,28 @@ namespace Quanlybanhang
             }
             return false;
         }
+        private bool DemSP(string _Masp)
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string tamp = "SELECT COUNT(*) FROM [dbo].[Sanpham] WHERE Masp=@Ma";
+                Cmd = new SqlCommand(tamp, Cnn);
+                Cmd.Parameters.Add(new SqlParameter("@Ma", _Masp));
+                int ct = int.Parse(Cmd.ExecuteScalar().ToString());
+                if (ct == 1)
+                {
+                    return true;
+                }
+                Cnn.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi hedemx2", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+            return false;
+        }
         #endregion=======================================
 
         #region==== Bắt lỗi Dự Liệu ============
@@ -253,6 +275,7 @@ namespace Quanlybanhang
                     return true;
                 }
             }
+            
             return false;
         }
         #endregion ===================================
