@@ -79,7 +79,29 @@ namespace Quanlybanhang
         //---------- Thêm dữ liệu------------
         private void button2_Click(object sender, EventArgs e)
         {
-           
+            #region===== SET dữ liệu cho Textbox Rỗng======
+
+            if (MakHtext.Text == "")
+            {
+                MakHtext.Text = "KH00";
+            }
+            if (SLtext.Text == "")
+            {
+                SLtext.Text = "0";
+            }
+
+            #endregion======================================
+
+            x = int.Parse(SLtext.Text);
+
+            // Kiểm tra lỗi và thực thi lệnh
+            if (KiemTraTextbox() == false)
+            {
+                Update_SLSP_Giam(Masptext.Text);
+                Themdulieu();
+                LoadTable(MaHDtext.Text);
+
+            }
 
         }
         // Xuất Hóa đơn
@@ -354,6 +376,126 @@ namespace Quanlybanhang
 
         }
         #endregion=========================================
+        #region========= Insert Chi Tiết Hóa Đơn ============
+        private void AddCTHD()
+        {
+            int S = gia * x;
+            string SS = S.ToString();
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string themHD = "INSERT INTO [dbo].[ChitietHD]([MaHD],[MaSP],[SLmua],[Ngaymua],[Thanhtien]) VALUES(@MaHD,@MaSP,@SLmua,@Ngaymua,@Thanhtien)";
+                Cmd = new SqlCommand(themHD, Cnn);
+                Cmd.Parameters.AddWithValue("@MaHD", MaHDtext.Text);
+                Cmd.Parameters.AddWithValue("@MaSP", Masptext.Text);
+                Cmd.Parameters.AddWithValue("@SLmua", SLtext.Text);
+                Cmd.Parameters.AddWithValue("@Ngaymua", _Ngaythang.Text);
+                Cmd.Parameters.AddWithValue("@Thanhtien", S);
+                Cmd.ExecuteNonQuery();
+                Cnn.Close();
+            }
+            catch (SqlException)
+
+            {
+                MessageBox.Show("Lỗi CT Hóa Đơn Table !");
+
+            }
+
+        }
+        #endregion===========================
+        #region========== Insert dữ liệu ==============
+        /// <summary>
+        ///  Truyền dữ liệu vào Database
+        /// </summary>
+        public void Themdulieu()
+        {
+
+            SqlConnection Cnn = db._DbContext();
+            //if (DemSP(Masptext.Text) == true)
+            //{
+            #region======= Tìm Giá của Sản Phẩm ==============
+            try
+            {
+                Cnn.Open();
+                string sql = "select Giaban from Sanpham Where MaSP=@textbox";
+                Cmd = new SqlCommand(sql, Cnn);
+                Cmd.Parameters.Add(new SqlParameter("@textbox", Masptext.Text));
+                object giaban = Cmd.ExecuteScalar();
+                gia = (int)giaban;
+                Cnn.Close();
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi code.timgiaban", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            #endregion ===================================
+            Tong = Tong + gia * x;
+            TongtienShow.Text = Tong.ToString();
+            MaHDshow.Text = MaHDtext.Text;
+            //Insert
+            if (String.Compare(MaHDcover, MaHDtext.Text, true) != 0)
+            {
+                AddHD();
+
+            }
+            AddCTHD();
+            #region==== Đặt dữ liệu cho Textbox==========
+            MaHDcover = MaHDtext.Text;
+            SLtext.Text = string.Empty;
+            Masptext.Text = string.Empty;
+            MaHDcover = MaHDtext.Text;
+            #endregion======================================
+            //}
+
+            //Load Gird
+            LoadGrid(MaHDtext.Text);
+        }
+        #endregion======================================
+        #region============ Update dữ liệu=============
+        private void Update_SLSP_Giam(string _MaSP)
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string themHD = "UPDATE [dbo].[Sanpham] SET [SLsp] = [SLsp] - @SLsp WHERE MaSP = @MaSP";
+                Cmd = new SqlCommand(themHD, Cnn);
+                Cmd.Parameters.AddWithValue("@SLsp", SLtext.Text);
+                Cmd.Parameters.AddWithValue("@MaSP", _MaSP);
+                Cmd.ExecuteNonQuery();
+                Cnn.Close();
+            }
+            catch (SqlException)
+
+            {
+                MessageBox.Show("Lỗi Update SL !");
+
+            }
+        }
+        private void Update_Tongtien_HD(string _MaDH)
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string themHD = "UPDATE [dbo].[Hoadon] SET [Tongtien] = @Tongtien WHERE MaHD = @MaHD";
+                Cmd = new SqlCommand(themHD, Cnn);
+                Cmd.Parameters.AddWithValue("@Tongtien", TongtienShow.Text);
+                Cmd.Parameters.AddWithValue("@MaHD", _MaDH);
+                Cmd.ExecuteNonQuery();
+                Cnn.Close();
+            }
+            catch (SqlException)
+
+            {
+                MessageBox.Show("Lỗi Update Tongtien !");
+
+            }
+        }
+        #endregion=====================================
+
 
     }
 
