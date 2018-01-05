@@ -326,6 +326,35 @@ namespace Quanlybanhang
             alap.Fill(T1);
         }
 
+        #region========== Insert Hóa Đơn ============
+        private void AddHD()
+        {
+            SqlConnection Cnn = db._DbContext();
+
+            string s = gia.ToString();
+            try
+            {
+                Cnn.Open();
+                string themHD = "INSERT INTO [dbo].[Hoadon]([MaHD],[MaNV],[MaKH],[Tongtien]) VALUES(@MaHD, @MaNV, @MaKH, @Tongtien)";
+                Cmd = new SqlCommand(themHD, Cnn);
+                Cmd.Parameters.AddWithValue("@MaHD", MaHDtext.Text);
+                Cmd.Parameters.AddWithValue("@MaNV", IDtext.Text);
+                Cmd.Parameters.AddWithValue("@MaKH", MakHtext.Text);
+                Cmd.Parameters.AddWithValue("@Tongtien", s);
+                Cmd.ExecuteNonQuery();
+                Cnn.Close();
+            }
+            catch (SqlException)
+
+            {
+                MessageBox.Show("Lỗi Hóa Đơn Table - Trùng Mã Hóa Đơn !");
+
+            }
+
+
+        }
+        #endregion=========================================
+
     }
 
 }
