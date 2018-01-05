@@ -275,7 +275,20 @@ namespace Quanlybanhang
                     return true;
                 }
             }
-            
+            if (Masptext.Text.Length > 3 && DemSP(Masptext.Text) == false)
+            {
+                MessageBox.Show("Mã Sản Phảm không Tồn tại", "Thông Báo Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Masptext.Text = string.Empty;
+                return true;
+            }
+            else
+            {
+                if (Masptext.Text.Length < 4)
+                {
+                    MessageBox.Show("Lỗi: 'Mã Sản Phẩm' ít nhất 4 Ký Tự!", "Thống Báo Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return true;
+                }
+            }
             return false;
         }
         #endregion ===================================
