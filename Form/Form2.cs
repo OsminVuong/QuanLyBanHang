@@ -297,7 +297,19 @@ namespace Quanlybanhang
             return false;
         }
         #endregion ===================================
-
+        private void LoadGrid(string _maHD)
+        {
+            SqlConnection Cnn = db._DbContext();
+            Cnn.Open();
+            string sql = "select * From ChitietHD where MAHD=@MaHD ORDER BY MaHD DESC";
+            Cmd = new SqlCommand(sql, Cnn);
+            SqlDataAdapter alap = new SqlDataAdapter(Cmd);
+            Cmd.Parameters.Add(new SqlParameter("@MaHD", _maHD));
+            DataTable Table = new DataTable();
+            alap.Fill(Table);
+            DataGView.AutoGenerateColumns = false;
+            DataGView.DataSource = Table;
+        }
 
     }
 
