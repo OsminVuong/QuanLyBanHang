@@ -123,7 +123,7 @@ namespace Quanlybanhang
                     if (x > 0) { 
                         if (x == 1)
                         {
-                            MessageBox.Show("x" + x + "x", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                            //MessageBox.Show("x" + x + "x", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
                             LoadnewForm4();
                         }
                         if (x == 2)
@@ -133,8 +133,8 @@ namespace Quanlybanhang
                         }
                         if (x == 3)
                         {
-                            MessageBox.Show("x" + x + "x", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
-                            //LoadnewForm2();
+                            //MessageBox.Show("x" + x + "x", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                            LoadnewForm2();
                             
                         }
                     }
@@ -163,13 +163,13 @@ namespace Quanlybanhang
         //----------------------------- Show Form 2 -----------------------------------
         private void LoadnewForm2()
         {
-            //Form2 frm2 = new Form2(Taikhoan.Text);
-            //this.Visible = false;
-            //if ((new Form2(Taikhoan.Text)).ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            //{ this.Visible = true; }
+            Form2 frm2 = new Form2(Taikhoan.Text);
+            this.Visible = false;
+            if ((new Form2(Taikhoan.Text)).ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            { this.Visible = true; }
 
-            //frm2.Show();
-            //this.Close();
+            frm2.Show();
+            this.Close();
         }
 
         //------------------------- Show Form 3 -----------------------------------
@@ -203,7 +203,7 @@ namespace Quanlybanhang
         //---------------- Button Logo hutech - xem thông tin ------------------
         private void button1_Click_1(object sender, EventArgs e)
         {
-            MessageBox.Show("Đây là phầm mềm Quản Lý Siêu Thị Mini\n\nDo nhóm lập trình và thiết kế: Lê Hoàng Vương \n\n Thiết kế nhằm phục vụ cho các shop hoặc các siêu thị nhỏ,\nhằm quản lý nhân viên, sản phẩm, thu ngân, hóa đơn, khách hàng...\n\n [Bài đồ án: Lập trình C trên WINDOWS - Hutech University]\n\n>>Liên Hệ: 01673056729", "Thông Tin", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            MessageBox.Show("Đây là phầm mềm Quản Lý Siêu Thị Mini\n\nDo nhóm lập trình và thiết kế: Lê Hoàng Vương và Dương Văn Hùng Lớp 15CTH01 \n\n Thiết kế nhằm phục vụ cho các shop hoặc các siêu thị nhỏ,\nhằm quản lý nhân viên, sản phẩm, thu ngân, hóa đơn, khách hàng...\n\n [Bài đồ án: Lập trình C trên WINDOWS - Hutech University]\n\n>>Liên Hệ: 01673056729", "Thông Tin", MessageBoxButtons.OK, MessageBoxIcon.Question);
         }
     }
 }
