@@ -31,14 +31,21 @@ namespace Quanlybanhang
         //--- Show GridView và Tên NV--------------------------
         private void Form2_Load(object sender, EventArgs e)
         {
-            
+            _Ngaythang.Text = year + "-" + month + "-" + day;
             ShowNV();
             
 
         }
 
-     
-      
+        #region==== Ngày và giờ ====
+        int day = DateTime.Now.Day;
+        int month = DateTime.Now.Month;
+        int year = DateTime.Now.Year;
+        int hour = DateTime.Now.Hour;
+        int Minute = DateTime.Now.Minute;
+        int second = DateTime.Now.Second;
+        #endregion
+
 
         #region========== Các nút lệnh =============
         // ----------- Thoát Form 2 và Khởi tạo Form 1-------
