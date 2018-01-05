@@ -497,10 +497,29 @@ namespace Quanlybanhang
         #endregion=====================================
 
         #region============ Xuất Hóa Đơn =========
-       
+        private void TimtenKH(string str)
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string tamp = "SELECT HotenKH FROM ChitietKH Where MaKH=@MaKH";
+                Cmd = new SqlCommand(tamp, Cnn);
+                Cmd.Parameters.Add(new SqlParameter("@MaKH", str));
+                SqlDataReader dr = Cmd.ExecuteReader();
+                Tim_ = Xuat_kq(dr);
+                Cnn.Close();
+
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi Timkh", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
         private void LuuHD()
         {
-            //TimtenKH(MakHtext.Text);
+            TimtenKH(MakHtext.Text);
             string File_name = @"D:\\HD" + MaHDtext.Text + ".txt";
             if (File.Exists(File_name)) File.Delete(File_name); //neu file da co thi xoa di
             FileStream myFile = new FileStream(File_name, FileMode.Create);
