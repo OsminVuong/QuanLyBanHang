@@ -79,7 +79,29 @@ namespace Quanlybanhang
         //---------- Thêm dữ liệu------------
         private void button2_Click(object sender, EventArgs e)
         {
-           
+            #region===== SET dữ liệu cho Textbox Rỗng======
+
+            if (MakHtext.Text == "")
+            {
+                MakHtext.Text = "KH00";
+            }
+            if (SLtext.Text == "")
+            {
+                SLtext.Text = "0";
+            }
+
+            #endregion======================================
+
+            x = int.Parse(SLtext.Text);
+
+            // Kiểm tra lỗi và thực thi lệnh
+            if (KiemTraTextbox() == false)
+            {
+                Update_SLSP_Giam(Masptext.Text);
+                Themdulieu();
+                LoadTable(MaHDtext.Text);
+
+            }
 
         }
         // Xuất Hóa đơn
