@@ -107,7 +107,28 @@ namespace Quanlybanhang
         // Xuất Hóa đơn
         private void button5_Click(object sender, EventArgs e)
         {
-            
+            if (TongtienShow.Text != string.Empty)
+            {
+
+                Update_Tongtien_HD(MaHDtext.Text);
+                LuuHD();
+
+                #region======== SET dữ liệu Text Box==========
+                TongtienShow.Text = string.Empty;
+                MaHDshow.Text = string.Empty;
+                MakHtext.Text = string.Empty;
+                SLtext.Text = string.Empty;
+                Masptext.Text = string.Empty;
+                Tong = 0;
+                ShowMaHD();
+                LoadGrid(MaHDtext.Text);
+                #endregion=====================================
+
+            }
+            else
+            {
+                MessageBox.Show("Bạn chưa Thêm SP !", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
 
         }
         #endregion=============================================
