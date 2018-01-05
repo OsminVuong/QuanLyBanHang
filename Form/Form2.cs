@@ -431,6 +431,31 @@ namespace Quanlybanhang
             LoadGrid(MaHDtext.Text);
         }
         #endregion======================================
+        #region============ Update dữ liệu=============
+        private void Update_SLSP_Giam(string _MaSP)
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string themHD = "UPDATE [dbo].[Sanpham] SET [SLsp] = [SLsp] - @SLsp WHERE MaSP = @MaSP";
+                Cmd = new SqlCommand(themHD, Cnn);
+                Cmd.Parameters.AddWithValue("@SLsp", SLtext.Text);
+                Cmd.Parameters.AddWithValue("@MaSP", _MaSP);
+                Cmd.ExecuteNonQuery();
+                Cnn.Close();
+            }
+            catch (SqlException)
+
+            {
+                MessageBox.Show("Lỗi Update SL !");
+
+            }
+        }
+
+        #endregion=====================================
+
+
     }
 
 }
