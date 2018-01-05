@@ -29,9 +29,12 @@ namespace Quanlybanhang
 
         #region==== Biến toàn cục =====
         // Biến tham số
-        
+        int gia = 0;
+        int x = 0;
+        int Tong = 0;
+        string MaHDcover = "";
         string bientam;
-        
+        string Tim_;
         #endregion=====================
 
 
@@ -297,7 +300,60 @@ namespace Quanlybanhang
             return false;
         }
         #endregion ===================================
+        private void LoadGrid(string _maHD)
+        {
+            SqlConnection Cnn = db._DbContext();
+            Cnn.Open();
+            string sql = "select * From ChitietHD where MAHD=@MaHD ORDER BY MaHD DESC";
+            Cmd = new SqlCommand(sql, Cnn);
+            SqlDataAdapter alap = new SqlDataAdapter(Cmd);
+            Cmd.Parameters.Add(new SqlParameter("@MaHD", _maHD));
+            DataTable Table = new DataTable();
+            alap.Fill(Table);
+            DataGView.AutoGenerateColumns = false;
+            DataGView.DataSource = Table;
+        }
 
+        private void LoadTable(string _Ma)
+        {
+            SqlConnection Cnn = db._DbContext();
+            Cnn.Open();
+            string sql = "select TenSP, SLmua, Giaban, Thanhtien From ChitietHD C INNER Join SanPham ON  C.MaSP = Sanpham.MaSP Where C.MaHD = @MaHD";
+            Cmd = new SqlCommand(sql, Cnn);
+            Cmd.Parameters.Add(new SqlParameter("@MaHD", _Ma));
+            SqlDataAdapter alap = new SqlDataAdapter(Cmd);
+            T1 = new DataTable();
+            alap.Fill(T1);
+        }
+
+        #region========== Insert Hóa Đơn ============
+        private void AddHD()
+        {
+            SqlConnection Cnn = db._DbContext();
+
+            string s = gia.ToString();
+            try
+            {
+                Cnn.Open();
+                string themHD = "INSERT INTO [dbo].[Hoadon]([MaHD],[MaNV],[MaKH],[Tongtien]) VALUES(@MaHD, @MaNV, @MaKH, @Tongtien)";
+                Cmd = new SqlCommand(themHD, Cnn);
+                Cmd.Parameters.AddWithValue("@MaHD", MaHDtext.Text);
+                Cmd.Parameters.AddWithValue("@MaNV", IDtext.Text);
+                Cmd.Parameters.AddWithValue("@MaKH", MakHtext.Text);
+                Cmd.Parameters.AddWithValue("@Tongtien", s);
+                Cmd.ExecuteNonQuery();
+                Cnn.Close();
+            }
+            catch (SqlException)
+
+            {
+                MessageBox.Show("Lỗi Hóa Đơn Table - Trùng Mã Hóa Đơn !");
+
+            }
+
+
+        }
+        #endregion=========================================
 
     }
 
