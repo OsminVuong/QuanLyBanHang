@@ -148,7 +148,7 @@ namespace Quanlybanhang
                 else
                 {
                     
-                    MessageBox.Show("Login Failed !!!"+ "\nError: The account and password that you've entered is incorrect. ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                    MessageBox.Show("Login Failed !"+ "\nError: The account and password that you've entered is incorrect. ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
                 }
                 
             }
