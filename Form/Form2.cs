@@ -27,13 +27,20 @@ namespace Quanlybanhang
             IDtext.Text = inputs;
         }
 
+        #region==== Biến toàn cục =====
+        // Biến tham số
         
+        string bientam;
+        
+        #endregion=====================
+
+
         //--- Show GridView và Tên NV--------------------------
         private void Form2_Load(object sender, EventArgs e)
         {
             _Ngaythang.Text = year + "-" + month + "-" + day;
             ShowNV();
-            
+            ShowMaHD();
 
         }
 
@@ -51,19 +58,6 @@ namespace Quanlybanhang
         // ----------- Thoát Form 2 và Khởi tạo Form 1-------
         private void button1_Click(object sender, EventArgs e)
         {
-            
-
-
-        }
-        //---------- Thêm dữ liệu------------
-        private void button2_Click(object sender, EventArgs e)
-        {
-           
-
-        }
-        // Xuất Hóa đơn
-        private void button5_Click(object sender, EventArgs e)
-        {
             DialogResult Cl_Ap;
             Cl_Ap = MessageBox.Show("Bạn có muốn THOÁT ?", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (Cl_Ap == DialogResult.Yes)
@@ -76,6 +70,19 @@ namespace Quanlybanhang
                 Application.Exit();
 
             }
+
+
+        }
+        //---------- Thêm dữ liệu------------
+        private void button2_Click(object sender, EventArgs e)
+        {
+           
+
+        }
+        // Xuất Hóa đơn
+        private void button5_Click(object sender, EventArgs e)
+        {
+            
 
         }
         #endregion=============================================
@@ -148,5 +155,63 @@ namespace Quanlybanhang
         {
 
         }
+
+        #region====== Truy Cập Hóa Đơn ==================
+
+        private void ShowMaHD()
+        {
+
+            if (DemHD() == false)
+            {
+                MaHDtext.Text = "1";
+            }
+            else
+            {
+                SqlConnection Cnn = db._DbContext();
+                try
+                {
+                    Cnn.Open();
+                    string tamp = "SELECT TOP(1) WITH TIES MaHD FROM Hoadon ORDER BY MaHD DESC";
+                    Cmd = new SqlCommand(tamp, Cnn);
+                    SqlDataReader dr = Cmd.ExecuteReader();
+                    bientam = Xuat_kq(dr);
+                    Cnn.Close();
+
+
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Lỗi ShowMaHD", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                int bt = int.Parse(bientam) + 1;
+                MaHDtext.Text = bt.ToString();
+            }
+        }
+        #endregion=======================================
+        #region========== Hệ Đếm - Kiểm tra sự tồn tại ================
+
+        //kiem tra Hoa don
+        private bool DemHD()
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string tamp = "SELECT COUNT(*) FROM [dbo].[Hoadon]";
+                Cmd = new SqlCommand(tamp, Cnn);
+                int ct = int.Parse(Cmd.ExecuteScalar().ToString());
+                if (ct >= 1)
+                {
+                    return true;
+                }
+                Cnn.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi hedemx1", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+            return false;
+        }
+        #endregion=======================================
     }
 }
