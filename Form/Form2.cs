@@ -566,6 +566,17 @@ namespace Quanlybanhang
 
         }
         #endregion================================
+
+        private void SLtext_TextChanged(object sender, EventArgs e)
+        {
+            int n = 0;
+            if (int.TryParse(this.SLtext.Text, out n))
+            {
+
+            }
+            else
+                SLtext.Text = "";
+        }
     }
 
 }
