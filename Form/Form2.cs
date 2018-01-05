@@ -57,8 +57,19 @@ namespace Quanlybanhang
         // Xuất Hóa đơn
         private void button5_Click(object sender, EventArgs e)
         {
-            
-           
+            DialogResult Cl_Ap;
+            Cl_Ap = MessageBox.Show("Bạn có muốn THOÁT ?", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (Cl_Ap == DialogResult.Yes)
+            {
+                Form1 frm1 = new Form1();
+                this.Visible = false;
+                if ((new Form1()).ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                { this.Visible = true; }
+                frm1.Show();
+                Application.Exit();
+
+            }
+
         }
         #endregion=============================================
 
