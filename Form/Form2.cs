@@ -212,6 +212,52 @@ namespace Quanlybanhang
             }
             return false;
         }
+        private bool DemKH(string _MaKH)
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string tamp = "SELECT COUNT(*) FROM [dbo].[ChitietKH] WHERE MaKH=@Ma";
+                Cmd = new SqlCommand(tamp, Cnn);
+                Cmd.Parameters.Add(new SqlParameter("@Ma", _MaKH));
+                int ct = int.Parse(Cmd.ExecuteScalar().ToString());
+                if (ct == 1)
+                {
+                    return true;
+                }
+                Cnn.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi hedemx3", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+            return false;
+        }
         #endregion=======================================
+
+        #region==== Bắt lỗi Dự Liệu ============
+        public bool KiemTraTextbox()
+        {
+            if (MakHtext.Text.Length > 3 && DemKH(MakHtext.Text) == false)
+            {
+                MessageBox.Show("Mã Khách Hàng không Tồn tại!", "Thống Báo Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MakHtext.Text = string.Empty;
+                return true;
+            }
+            else
+            {
+                if (MakHtext.Text.Length < 4)
+                {
+                    MessageBox.Show("Lỗi: 'Mã Khách Hàng' ít nhất 4 Ký Tự!", "Thống Báo Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return true;
+                }
+            }
+            return false;
+        }
+        #endregion ===================================
+
+
     }
+
 }
