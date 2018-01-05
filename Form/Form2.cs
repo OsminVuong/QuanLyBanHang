@@ -311,6 +311,18 @@ namespace Quanlybanhang
             DataGView.DataSource = Table;
         }
 
+        private void LoadTable(string _Ma)
+        {
+            SqlConnection Cnn = db._DbContext();
+            Cnn.Open();
+            string sql = "select TenSP, SLmua, Giaban, Thanhtien From ChitietHD C INNER Join SanPham ON  C.MaSP = Sanpham.MaSP Where C.MaHD = @MaHD";
+            Cmd = new SqlCommand(sql, Cnn);
+            Cmd.Parameters.Add(new SqlParameter("@MaHD", _Ma));
+            SqlDataAdapter alap = new SqlDataAdapter(Cmd);
+            T1 = new DataTable();
+            alap.Fill(T1);
+        }
+
     }
 
 }
