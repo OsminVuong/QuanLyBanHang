@@ -23,9 +23,9 @@ namespace Quanlybanhang
 
         public Form5(string input)
         {
-            MaKHtext.Text = input;
-            InitializeComponent();
             
+            InitializeComponent();
+            MaKHtext.Text = input;
         }
         private void Form5_Load(object sender, EventArgs e)
         {

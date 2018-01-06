@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form5));
             this.label1 = new System.Windows.Forms.Label();
             this.MaKHtext = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -159,6 +160,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.MaKHtext);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(760, 250);
             this.MinimizeBox = false;
