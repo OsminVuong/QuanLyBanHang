@@ -29,6 +29,7 @@ namespace Quanlybanhang
         private void Form7_Load(object sender, EventArgs e)
         {
             Showtextbox();
+            Load_Grid1();
         }
 
         
@@ -46,7 +47,31 @@ namespace Quanlybanhang
             DemSP();
             TongDT();
         }
+        #region======= Load Gridview ===========
+        private void Load_Grid1()
+        {
 
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string sql = "SELECT H.MaHD as [Mã KH], HotenKH as [Tên KH], Ngaymua AS [Ngày mua], Tongtien as [Tổng Tiền] FROM Hoadon H INNER JOIN ChitietKH C ON H.MaKH = C.MaKH INNER JOIN ChitietHD A ON H.MaHD=A.MaHD WHERE Tongtien >0 and MaNV= @MaNV Group by H.MaHD,HotenKH,Ngaymua,Tongtien ORDER BY H.MaHD ASC";
+                Cmd = new SqlCommand(sql, Cnn);
+                Cmd.Parameters.Add(new SqlParameter("@MaNV", IDtext.Text));
+                da = new SqlDataAdapter(Cmd);
+                DataTable Table = new DataTable();
+                da.Fill(Table);
+                //DataGView1.AutoGenerateColumns = false;
+                DataGView1.DataSource = Table;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi DataGidView1");
+            }
+        }
+        
+
+        #endregion===========================================
         #region====== Đếm ========
         private void DemHD()
         {
