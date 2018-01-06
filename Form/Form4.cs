@@ -27,6 +27,8 @@ namespace Quanlybanhang
         {
             ShowNV();
             Show_Grid();
+           
+            Load_Combobox();
         }
         #region============ List Grid ===============================
         private void Show_Grid()
@@ -226,16 +228,101 @@ namespace Quanlybanhang
             }
         }
 
-       
-        
+
+
         #endregion===========================================================
+        #region========= Combobox =========================
+        private void Load_Combobox()
+        {
+            Load_ComboBox1();
+            Load_ComboBox2();
+            Load_ComboBox3();
+        }
+        private void Load_ComboBox1()
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string str = "Select Ngaynhap from Sanpham Group By Ngaynhap";
+                Cmd = new SqlCommand(str, Cnn);
+                da = new SqlDataAdapter(Cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+
+                    DataRow row = dt.NewRow();
+                    dt.Rows.InsertAt(row, 0);
+                    Ngay_NKcombo.DataSource = dt;
+                    Ngay_NKcombo.DisplayMember = "Ngaynhap";
+                    Ngay_NKcombo.ValueMember = "Ngaynhap";
+                }
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Lỗi Combobox.1xF4");
+            }
+        }
+        private void Load_ComboBox2()
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string str = "Select Ngaymua from ChitietHD Group By Ngaymua";
+                Cmd = new SqlCommand(str, Cnn);
+                da = new SqlDataAdapter(Cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.NewRow();
+                    dt.Rows.InsertAt(row, 0);
+                    Ngay_SPcombo.DataSource = dt;
+                    Ngay_SPcombo.DisplayMember = "Ngaymua";
+                    Ngay_SPcombo.ValueMember = "Ngaymua";
+                }
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Lỗi Combobox.2xF4");
+            }
+        }
+        private void Load_ComboBox3()
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string str = "Select HotenNV, A.MaNV from Nhanvien N INNER JOIN Accounts A On A.MaNV=N.MaNV where Quyenhan=3";
+                Cmd = new SqlCommand(str, Cnn);
+                da = new SqlDataAdapter(Cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.NewRow();
+                    row["HotenNV"] = "--- Chọn tên Nhân Viên ---";
+                    dt.Rows.InsertAt(row, 0);
+                    Nhanvien_HDcombo.DataSource = dt;
+                    Nhanvien_HDcombo.DisplayMember = "HotenNV";
+                    Nhanvien_HDcombo.ValueMember = "MaNV";
+                }
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Lỗi Combobox.3xF4");
+            }
+        }
+        #endregion=========================================
 
 
-       
 
-       
 
-        
+
+
+
         private void CloseForm4_Click(object sender, EventArgs e)
         {
             DialogResult Cl_Ap;
