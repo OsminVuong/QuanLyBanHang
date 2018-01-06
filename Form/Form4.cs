@@ -25,8 +25,172 @@ namespace Quanlybanhang
         }
         private void Form4_Load(object sender, EventArgs e)
         {
-            ShowNV();            
+            ShowNV();
+            Show_Grid();
+           
+            Load_Combobox();
         }
+        #region============ List Grid ===============================
+        private void Show_Grid()
+        {
+            Load_Grid1();
+            Load_Grid2();
+            Load_Grid3();
+            Load_Grid4();
+            Load_Grid5();
+            Load_Grid6();
+            Acc_Grid();
+
+        }
+        private void Load_Grid1()
+        {
+
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string sql = "SELECT N.[MaNV] as [Mã NV],[HotenNV] as [Tên NV],[Chucvu] as [Chức Vụ],[Ngaysinh] as [Ngày Sinh],[SDT],[Diachi] as [Địa Chỉ] FROM[dbo].[Nhanvien] N INNER JOIN [dbo].[ChitietNV] C ON N.MaNV=C.MaNV  ORDER BY N.MaNV ASC";
+                Cmd = new SqlCommand(sql, Cnn);
+                da = new SqlDataAdapter(Cmd);
+                DataTable Table = new DataTable();
+                da.Fill(Table);
+                //DataGView1.AutoGenerateColumns = false;
+                dataGridView1.DataSource = Table;
+                Data_Grid_NV.DataSource = Table;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi DataGidView.1xf4");
+            }
+        }
+        private void Load_Grid2()
+        {
+
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string sql = "SELECT MaSP as [Mã SP],Tensp as [Tên SP],HSD,Giaban as [Giá bán],Gianhap as [Giá Nhập],SLsp [Số Lượng], Ngaynhap as [Ngày Nhập],MaNCC as [Mã NHà CC] FROM Sanpham  ORDER BY MaSp ASC";
+                Cmd = new SqlCommand(sql, Cnn);
+                da = new SqlDataAdapter(Cmd);
+                DataTable Table = new DataTable();
+                da.Fill(Table);
+                //DataGView1.AutoGenerateColumns = false;
+                dataGridView2.DataSource = Table;
+                Nhapkho_DGV.DataSource = Table;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi DataGidView.2xf4");
+            }
+        }
+        private void Load_Grid3()
+        {
+
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string sql = "SELECT [MaHD] as [Mã Hóa Đơn],[MaNV] as [Mã Nhân Viên],[HotenKH] as [Tên Khách Hàng],[Tongtien] as [Tổng Thanh Toán] FROM [dbo].[Hoadon] H INNER JOIN [dbo].[ChitietKH] C ON H.MaKH=C.MaKH  ORDER BY MaHD ASC";
+                Cmd = new SqlCommand(sql, Cnn);
+                da = new SqlDataAdapter(Cmd);
+                DataTable Table = new DataTable();
+                da.Fill(Table);
+                //DataGView1.AutoGenerateColumns = false;
+                dataGridView3.DataSource = Table;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi DataGidView.3xf4");
+            }
+        }
+        private void Load_Grid6()
+        {
+
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string sql = "SELECT [MaHD] as [Mã HD],[TenSP] as [Tên SP],[SLmua] as [SL],[Ngaymua] as [Ngày mua],[Thanhtien] as [Thành Tiền] FROM [dbo].[ChitietHD] C INNER JOIN [dbo].[Sanpham] S On C.MaSP =S.MaSP ORDER BY MaHD ASC";
+                Cmd = new SqlCommand(sql, Cnn);
+                da = new SqlDataAdapter(Cmd);
+                DataTable Table = new DataTable();
+                da.Fill(Table);
+                //DataGView1.AutoGenerateColumns = false;
+                dataGridView6.DataSource = Table;
+                Spdaban_DGV.DataSource = Table;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi DataGidView.6xf4");
+            }
+        }
+        private void Load_Grid4()
+        {
+
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string sql = "SELECT [MaKH] as [Mã Khách Hàng],[HotenKH] as [Tên Khách Hàng],[Ngaysinh] as [Ngày Sinh],[SDT],[Diachi] as [Địa Chỉ],[Mail] FROM [dbo].[ChitietKH]  ORDER BY MaKH ASC";
+                Cmd = new SqlCommand(sql, Cnn);
+                da = new SqlDataAdapter(Cmd);
+                DataTable Table = new DataTable();
+                da.Fill(Table);
+                //DataGView1.AutoGenerateColumns = false;
+                dataGridView4.DataSource = Table;
+                Data_View_KH.DataSource = Table;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi DataGidView.4xf4");
+            }
+        }
+        private void Load_Grid5()
+        {
+
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string sql = "SELECT [MaNCC] as [Mã Nhà CC],[Tenncc] as [Tên Nhà CC],[DiaChi] as [Địa Chỉ] FROM [dbo].[NhaCC]  ORDER BY MaNCC ASC";
+                Cmd = new SqlCommand(sql, Cnn);
+                da = new SqlDataAdapter(Cmd);
+                DataTable Table = new DataTable();
+                da.Fill(Table);
+                //DataGView1.AutoGenerateColumns = false;
+                dataGridView5.DataSource = Table;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi DataGidView.5xf4");
+            }
+        }
+
+        private void Acc_Grid()
+        {
+
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string sql = "SELECT [ID],[Password],[Quyenhan] as [Loại Quyền],A.[MaNV] as [Mã NV],[HotenNV] as [Tên NV],[Chucvu] as [Chức Vụ] FROM [dbo].[Accounts] A INNER JOIN [dbo].[Nhanvien] N ON A.MaNV=N.MaNV ORDER BY A.MaNV ASC";
+                Cmd = new SqlCommand(sql, Cnn);
+                da = new SqlDataAdapter(Cmd);
+                DataTable Table = new DataTable();
+                da.Fill(Table);
+                //DataGView1.AutoGenerateColumns = false;
+                Data_GridviewACC.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                Data_GridviewACC.DataSource = Table;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi Acc_Gird.f4");
+            }
+        }
+
+
+        #endregion================================================================
 
         #region======== Truy cập thông tin NV===========
         //-- Đọc dữ theo tuần tự từng dòng và truy xuất chỉ số cột
@@ -64,15 +228,102 @@ namespace Quanlybanhang
             }
         }
 
-       
-        
+
+
         #endregion===========================================================
+        #region========= Combobox =========================
+        private void Load_Combobox()
+        {
+            Load_ComboBox1();
+            Load_ComboBox2();
+            Load_ComboBox3();
+        }
+        private void Load_ComboBox1()
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string str = "Select Ngaynhap from Sanpham Group By Ngaynhap";
+                Cmd = new SqlCommand(str, Cnn);
+                da = new SqlDataAdapter(Cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
 
-       
+                    DataRow row = dt.NewRow();
+                    dt.Rows.InsertAt(row, 0);
+                    Ngay_NKcombo.DataSource = dt;
+                    Ngay_NKcombo.DisplayMember = "Ngaynhap";
+                    Ngay_NKcombo.ValueMember = "Ngaynhap";
+                }
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Lỗi Combobox.1xF4");
+            }
+        }
+        private void Load_ComboBox2()
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string str = "Select Ngaymua from ChitietHD Group By Ngaymua";
+                Cmd = new SqlCommand(str, Cnn);
+                da = new SqlDataAdapter(Cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.NewRow();
+                    dt.Rows.InsertAt(row, 0);
+                    Ngay_SPcombo.DataSource = dt;
+                    Ngay_SPcombo.DisplayMember = "Ngaymua";
+                    Ngay_SPcombo.ValueMember = "Ngaymua";
+                }
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Lỗi Combobox.2xF4");
+            }
+        }
+        private void Load_ComboBox3()
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string str = "Select HotenNV, A.MaNV from Nhanvien N INNER JOIN Accounts A On A.MaNV=N.MaNV where Quyenhan=3";
+                Cmd = new SqlCommand(str, Cnn);
+                da = new SqlDataAdapter(Cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.NewRow();
+                    row["HotenNV"] = "--- Chọn tên Nhân Viên ---";
+                    dt.Rows.InsertAt(row, 0);
+                    Nhanvien_HDcombo.DataSource = dt;
+                    Nhanvien_HDcombo.DisplayMember = "HotenNV";
+                    Nhanvien_HDcombo.ValueMember = "MaNV";
+                }
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Lỗi Combobox.3xF4");
+            }
+        }
+        #endregion=========================================
 
-       
 
-        
+
+
+
+
+
+
         private void CloseForm4_Click(object sender, EventArgs e)
         {
             DialogResult Cl_Ap;

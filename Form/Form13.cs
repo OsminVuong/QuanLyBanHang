@@ -34,7 +34,7 @@ namespace Quanlybanhang
                 if (Xacnhan == DialogResult.Yes)
                 { ThemNV(); ThemCTNV();  }
             }
-            // them nv
+          
         }
 
 
