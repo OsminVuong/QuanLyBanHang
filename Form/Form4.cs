@@ -105,7 +105,9 @@ namespace Quanlybanhang
 
         private void XoaNV_button_Click_1(object sender, EventArgs e)
         {
-          // xoa nhan vien
+            // xoa nhan vien
+            Form14 f14 = new Form14();
+            f14.Show();
         }
 
         private void ThemAc_button_Click(object sender, EventArgs e)
