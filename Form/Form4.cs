@@ -92,18 +92,18 @@ namespace Quanlybanhang
 
         private void Refresh_button_Click(object sender, EventArgs e)
         {
-            
+            // reset 
         }
 
        
         private void ThemNV_button_Click_1(object sender, EventArgs e)
         {
-            
+            //them
         }
 
         private void XoaNV_button_Click_1(object sender, EventArgs e)
         {
-          
+          // xoa nhan vien
         }
 
         private void ThemAc_button_Click(object sender, EventArgs e)
