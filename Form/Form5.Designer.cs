@@ -106,7 +106,7 @@
             this.DataGView.Name = "DataGView";
             this.DataGView.ReadOnly = true;
             this.DataGView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.DataGView.Size = new System.Drawing.Size(720, 55);
+            this.DataGView.Size = new System.Drawing.Size(720, 62);
             this.DataGView.TabIndex = 1;
             // 
             // Column1
