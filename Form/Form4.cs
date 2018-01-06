@@ -112,7 +112,7 @@ namespace Quanlybanhang
 
         private void ThemAc_button_Click(object sender, EventArgs e)
         {
-            // xoa nhan acc
+            // Them acc
             Form15 f15 = new Form15();
             f15.Show();
         }
@@ -124,17 +124,17 @@ namespace Quanlybanhang
             f17.Show();
 
         }
-
-        
-
         private void Them_KH_Click(object sender, EventArgs e)
         {
-            
+            // thêm khach hang
+            Form18 f18 = new Form18();
+            f18.Show();
         }
 
         private void Xoa_KH_Click(object sender, EventArgs e)
         {
-            
+            Form19 f19 = new Form19();
+            f19.Show();
         }
 
         private void TTHD_Click_Click(object sender, EventArgs e)
