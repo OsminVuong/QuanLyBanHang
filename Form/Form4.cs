@@ -92,28 +92,37 @@ namespace Quanlybanhang
 
         private void Refresh_button_Click(object sender, EventArgs e)
         {
-            
+            // reset 
         }
 
        
         private void ThemNV_button_Click_1(object sender, EventArgs e)
         {
-            
+            //them
+            Form13 f13 = new Form13();
+            f13.Show();
         }
 
         private void XoaNV_button_Click_1(object sender, EventArgs e)
         {
-          
+            // xoa nhan vien
+            Form14 f14 = new Form14();
+            f14.Show();
         }
 
         private void ThemAc_button_Click(object sender, EventArgs e)
         {
-           
+            // xoa nhan acc
+            Form15 f15 = new Form15();
+            f15.Show();
         }
 
         private void SetAc_button_Click_1(object sender, EventArgs e)
         {
-            
+            // cai dat acc 
+            Form17 f17 = new Form17();
+            f17.Show();
+
         }
 
         
@@ -135,6 +144,9 @@ namespace Quanlybanhang
         
         private void XoaAc_button_Click(object sender, EventArgs e)
         {
+            //xoa accounts
+            Form16 f16 = new Form16();
+            f16.Show();
         }
     }
 }
