@@ -99,6 +99,8 @@ namespace Quanlybanhang
         private void ThemNV_button_Click_1(object sender, EventArgs e)
         {
             //them
+            Form13 f13 = new Form13();
+            f13.Show();
         }
 
         private void XoaNV_button_Click_1(object sender, EventArgs e)
