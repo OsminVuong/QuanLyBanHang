@@ -113,6 +113,8 @@ namespace Quanlybanhang
         private void ThemAc_button_Click(object sender, EventArgs e)
         {
             // xoa nhan acc
+            Form15 f15 = new Form15();
+            f15.Show();
         }
 
         private void SetAc_button_Click_1(object sender, EventArgs e)

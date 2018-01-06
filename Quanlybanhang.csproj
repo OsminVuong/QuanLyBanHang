@@ -65,6 +65,12 @@
     <Compile Include="Form\Form14.designer.cs">
       <DependentUpon>Form14.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\Form15.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form15.designer.cs">
+      <DependentUpon>Form15.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\Form1SplashCreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Form14.resx">
       <DependentUpon>Form14.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form15.resx">
+      <DependentUpon>Form15.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Form1SplashCreen.resx">
       <DependentUpon>Form1SplashCreen.cs</DependentUpon>
