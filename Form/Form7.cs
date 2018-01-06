@@ -30,6 +30,8 @@ namespace Quanlybanhang
         {
             Showtextbox();
             Load_Grid1();
+            Load_Grid2();
+            Load_Grid3();
         }
 
         
@@ -69,7 +71,48 @@ namespace Quanlybanhang
                 MessageBox.Show("Lỗi DataGidView1");
             }
         }
-        
+        private void Load_Grid2()
+        {
+
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string sql = "SELECT H.MaHD as [Mã HD],Tensp as [Tên SP], Sum(SLmua) AS [SL mua], Thanhtien as [Thành Tiền] FROM Hoadon H INNER JOIN ChitietHD A ON H.MaHD=A.MaHD INNER JOIN Sanpham S ON A.MaSP=S.MaSP WHERE Tongtien >0 and MaNV= @MaNV Group by H.MaHD,Tensp,Thanhtien ORDER BY H.MaHD ASC";
+                Cmd = new SqlCommand(sql, Cnn);
+                Cmd.Parameters.Add(new SqlParameter("@MaNV", IDtext.Text));
+                da = new SqlDataAdapter(Cmd);
+                DataTable Table = new DataTable();
+                da.Fill(Table);
+                //DataGView1.AutoGenerateColumns = false;
+                DataGView2.DataSource = Table;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi DataGidView2");
+            }
+        }
+        private void Load_Grid3()
+        {
+
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string sql = "SELECT H.MaHD as [Mã HD], HotenKH as [Tên KH], Ngaymua AS [Ngày mua]FROM Hoadon H INNER JOIN ChitietKH C ON H.MaKH = C.MaKH INNER JOIN ChitietHD A ON H.MaHD=A.MaHD WHERE Tongtien < 1 and MaNV= @MaNV Group by H.MaHD,HotenKH,Ngaymua ORDER BY H.MaHD ASC";
+                Cmd = new SqlCommand(sql, Cnn);
+                Cmd.Parameters.Add(new SqlParameter("@MaNV", IDtext.Text));
+                da = new SqlDataAdapter(Cmd);
+                DataTable Table = new DataTable();
+                da.Fill(Table);
+                //DataGView1.AutoGenerateColumns = false;
+                DataGView3.DataSource = Table;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi DataGidView3");
+            }
+        }
 
         #endregion===========================================
         #region====== Đếm ========
