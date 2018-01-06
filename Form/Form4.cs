@@ -27,7 +27,7 @@ namespace Quanlybanhang
         {
             ShowNV();
             Show_Grid();
-           
+            Show_Load();
             Load_Combobox();
         }
         #region============ List Grid ===============================
@@ -316,14 +316,187 @@ namespace Quanlybanhang
             }
         }
         #endregion=========================================
+        #region========== Load Grid of Combobox ===========
+        private void Load_Grid_Combobox1(string ngay)
+        {
 
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string sql = "SELECT MaSP as [Mã SP],Tensp as [Tên SP],HSD,Giaban as [Giá bán],Gianhap as [Giá Nhập],SLsp [Số Lượng],MaNCC as [Mã NHà CC] FROM Sanpham  where Ngaynhap=@Ngaynhap ORDER BY MaSp ASC";
+                Cmd = new SqlCommand(sql, Cnn);
+                Cmd.Parameters.Add(new SqlParameter("@Ngaynhap", ngay));
+                da = new SqlDataAdapter(Cmd);
+                DataTable Table = new DataTable();
+                da.Fill(Table);
+                //DataGView1.AutoGenerateColumns = false;
+                Nhapkho_DGV.DataSource = Table;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi DataGidViewCombobox.1xf4");
+            }
+        }
+        private void Load_Grid_Combobox2(string ngay)
+        {
 
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string sql = "SELECT [MaHD] as [Mã HD],[TenSP] as [Tên SP],[SLmua] as [SL],[Thanhtien] as [Thành Tiền] FROM [dbo].[ChitietHD] C INNER JOIN [dbo].[Sanpham] S On C.MaSP =S.MaSP Where Ngaymua=@Ngaymua ORDER BY MaHD ASC";
+                Cmd = new SqlCommand(sql, Cnn);
+                Cmd.Parameters.Add(new SqlParameter("@Ngaymua", ngay));
+                da = new SqlDataAdapter(Cmd);
+                DataTable Table = new DataTable();
+                da.Fill(Table);
+                //DataGView1.AutoGenerateColumns = false;
+                Spdaban_DGV.DataSource = Table;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi DataGidViewCombobox.2xf4");
+            }
+        }
+        private void Load_Grid_Combobox3(string _MaNV)
+        {
 
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string sql = "SELECT [MaHD] as [Mã Hóa Đơn],[HotenKH] as [Tên Khách Hàng],[Tongtien] as [Tổng Thanh Toán] FROM [dbo].[Hoadon] H INNER JOIN [dbo].[ChitietKH] C ON H.MaKH=C.MaKH Where Tongtien>0 and MaNV=@MaNV ORDER BY MaHD ASC";
+                Cmd = new SqlCommand(sql, Cnn);
+                Cmd.Parameters.Add(new SqlParameter("@MaNV", _MaNV));
+                da = new SqlDataAdapter(Cmd);
+                DataTable Table = new DataTable();
+                da.Fill(Table);
+                Hoadon_ok_DGV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                Hoadon_ok_DGV.DataSource = Table;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi DataGidViewCombobox.3xf4");
+            }
+        }
+        private void Load_Grid_Combobox4(string _MaNv)
+        {
 
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string sql = "SELECT [MaHD] as [Mã Hóa Đơn],[HotenKH] as [Tên Khách Hàng],[Tongtien] as [Tổng Thanh Toán] FROM [dbo].[Hoadon] H INNER JOIN [dbo].[ChitietKH] C ON H.MaKH=C.MaKH Where Tongtien=0 and MaNV=@MaNV ORDER BY MaHD ASC";
+                Cmd = new SqlCommand(sql, Cnn);
+                Cmd.Parameters.Add(new SqlParameter("@MaNV", _MaNv));
+                da = new SqlDataAdapter(Cmd);
+                DataTable Table = new DataTable();
+                da.Fill(Table);
+                Hoadon_loi_DGV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                Hoadon_loi_DGV.DataSource = Table;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi DataGidViewCombobox.4xf4");
+            }
+        }
+        private void Load_Grid_Combobox4_2()
+        {
 
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string sql = "SELECT [MaHD] as [Mã Hóa Đơn],[MaNV] as [Mã Nhân Viên],[HotenKH] as [Tên Khách Hàng],[Tongtien] as [Tổng Thanh Toán] FROM [dbo].[Hoadon] H INNER JOIN [dbo].[ChitietKH] C ON H.MaKH=C.MaKH Where Tongtien!=0 ORDER BY MaHD ASC";
+                Cmd = new SqlCommand(sql, Cnn);
+                da = new SqlDataAdapter(Cmd);
+                DataTable Table = new DataTable();
+                da.Fill(Table);
+                //DataGView1.AutoGenerateColumns = false;
+                Hoadon_ok_DGV.DataSource = Table;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi DataGidViewCombobox.4_2xf4");
+            }
+        }
+        private void Load_Grid_Combobox4_3()
+        {
 
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string sql = "SELECT [MaHD] as [Mã Hóa Đơn],[MaNV] as [Mã Nhân Viên],[HotenKH] as [Tên Khách Hàng],[Tongtien] as [Tổng Thanh Toán] FROM [dbo].[Hoadon] H INNER JOIN [dbo].[ChitietKH] C ON H.MaKH=C.MaKH Where Tongtien=0 ORDER BY MaHD ASC";
+                Cmd = new SqlCommand(sql, Cnn);
+                da = new SqlDataAdapter(Cmd);
+                DataTable Table = new DataTable();
+                da.Fill(Table);
+                //DataGView1.AutoGenerateColumns = false;
+                Hoadon_loi_DGV.DataSource = Table;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi DataGidViewCombobox.4_3xf4");
+            }
+        }
+        #endregion=========================================
+        #region===== Sự kiện Combobox ======
+        private void Ngay_NKcombo_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
 
+            if (Ngay_NKcombo.SelectedValue.ToString() != "System.Data.DataRowView")
+            {
+                Load_Grid_Combobox1(Ngay_NKcombo.SelectedValue.ToString());
+            }
+            else
+            {
+                Load_Grid2();
+            }
+            if (Ngay_NKcombo.SelectedValue.ToString() == "")
+            {
+                Load_Grid2();
+            }
+        }
 
+        private void Ngay_SPcombo_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (Ngay_SPcombo.SelectedValue.ToString() != "System.Data.DataRowView")
+            {
+                Load_Grid_Combobox2(Ngay_SPcombo.SelectedValue.ToString());
+            }
+            else
+            {
+                Load_Grid6();
+            }
+            if (Ngay_SPcombo.SelectedValue.ToString() == "")
+            {
+                Load_Grid6();
+            }
+        }
+
+        private void Nhanvien_HDcombo_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+            if (Nhanvien_HDcombo.SelectedValue.ToString() != "System.Data.DataRowView")
+            {
+                Load_Grid_Combobox3(Nhanvien_HDcombo.SelectedValue.ToString());
+                Load_Grid_Combobox4(Nhanvien_HDcombo.SelectedValue.ToString());
+            }
+            else
+            {
+                Load_Grid_Combobox4_2();
+                Load_Grid_Combobox4_3();
+            }
+            if (Nhanvien_HDcombo.SelectedValue.ToString() == "")
+            {
+                Load_Grid_Combobox4_2();
+                Load_Grid_Combobox4_3();
+            }
+        }
+        #endregion==========================
+        
         private void CloseForm4_Click(object sender, EventArgs e)
         {
             DialogResult Cl_Ap;
@@ -339,7 +512,258 @@ namespace Quanlybanhang
             }
         }
 
-        
+        #region============== Bộ Đếm ========================
+        private void Show_Load()
+        {
+            DemHD();
+            DemHDLoi();
+            DemHDOK();
+            DemKHCOK();
+            DemKHDK();
+            DemLSP();
+            DemNV();
+            DemDanhThu();
+            DemNCC();
+            DemSLdaban();
+            DemTiennhap();
+            DemSLHientai();
+            DemSLSP();
+            NhaCCitnhat();
+            NhaCCnhieunhat();
+        }
+        private void DemNV()
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string tamp = "SELECT COUNT(MaNV) FROM [dbo].[Nhanvien]";
+                Cmd = new SqlCommand(tamp, Cnn);
+                int ct = int.Parse(Cmd.ExecuteScalar().ToString());
+                TongNVtext.Text = ct.ToString();
+                Cnn.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi hedem.1xF4 ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+        }
+        private void DemLSP()
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string tamp = "SELECT COUNT(MaSP) FROM [dbo].[Sanpham]";
+                Cmd = new SqlCommand(tamp, Cnn);
+                int ct = int.Parse(Cmd.ExecuteScalar().ToString());
+                TongSPtext.Text = ct.ToString();
+                Cnn.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi hedem.2xF4 ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+        }
+
+        private void DemKHDK()
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string tamp = "SELECT COUNT(MaKH) FROM [dbo].[ChitietKH] Where MaKH != 'KH00'";
+                Cmd = new SqlCommand(tamp, Cnn);
+                int ct = int.Parse(Cmd.ExecuteScalar().ToString());
+                TongKHDKtext.Text = ct.ToString();
+                Cnn.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi hedem.3xF4 ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+        }
+        private void DemKHCOK()
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string tamp = "SELECT COUNT(MaKH) FROM [dbo].[Hoadon] Where MaKH ='KH00'";
+                Cmd = new SqlCommand(tamp, Cnn);
+                int ct = int.Parse(Cmd.ExecuteScalar().ToString());
+                TongKHCDKtext.Text = ct.ToString();
+
+                Cnn.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi hedem.4xF4 ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+        }
+        private void DemHD()
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string tamp = "SELECT COUNT(MaHD) FROM [dbo].[Hoadon]";
+                Cmd = new SqlCommand(tamp, Cnn);
+                int ct = int.Parse(Cmd.ExecuteScalar().ToString());
+                TongHDtext.Text = ct.ToString();
+
+                Cnn.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi hedem.5xF4 ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+        }
+        private void DemHDOK()
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string tamp = "SELECT COUNT(MaHD) FROM [dbo].[Hoadon] Where Tongtien!=0";
+                Cmd = new SqlCommand(tamp, Cnn);
+                int ct = int.Parse(Cmd.ExecuteScalar().ToString());
+                TongHDOKtext.Text = ct.ToString();
+
+                Cnn.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi hedem.6xF4 ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+        }
+        private void DemHDLoi()
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string tamp = "SELECT COUNT(MaHD) FROM [dbo].[Hoadon] Where Tongtien=0";
+                Cmd = new SqlCommand(tamp, Cnn);
+                int ct = int.Parse(Cmd.ExecuteScalar().ToString());
+                TongHDLoitext.Text = ct.ToString();
+
+                Cnn.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi hedem.7xF4 ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+        }
+        private void DemNCC()
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string tamp = "SELECT COUNT(MaNCC) FROM [dbo].[NhaCC]";
+                Cmd = new SqlCommand(tamp, Cnn);
+                int ct = int.Parse(Cmd.ExecuteScalar().ToString());
+                TongNCCtext.Text = ct.ToString();
+
+                Cnn.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi hedem.8xF4 ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+        }
+        private void DemSLSP()
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string tamp = "SELECT SUM(SLnhap) FROM [dbo].[Sanpham]";
+                Cmd = new SqlCommand(tamp, Cnn);
+                int ct = int.Parse(Cmd.ExecuteScalar().ToString());
+                TongSPnhaptext.Text = ct.ToString();
+
+                Cnn.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi hedem.9xF4 ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+        }
+        private void DemSLHientai()
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string tamp = "SELECT SUM(SLsp) FROM [dbo].[Sanpham]";
+                Cmd = new SqlCommand(tamp, Cnn);
+                int ct = int.Parse(Cmd.ExecuteScalar().ToString());
+                TongSLhientaitext.Text = ct.ToString();
+                TongSPtontext.Text = ct.ToString();
+                Cnn.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi hedem.10xF4 ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+        }
+        private void DemSLdaban()
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string tamp = "SELECT SUM(SLmua) FROM [dbo].[ChitietHD]";
+                Cmd = new SqlCommand(tamp, Cnn);
+                int ct = int.Parse(Cmd.ExecuteScalar().ToString());
+                TongSPdabantext.Text = ct.ToString();
+
+                Cnn.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi hedem.11xF4 ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+        }
+        private void DemTiennhap()
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string tamp = "SELECT SUM(Gianhap*SLnhap) FROM [dbo].[Sanpham]";
+                Cmd = new SqlCommand(tamp, Cnn);
+                int ct = int.Parse(Cmd.ExecuteScalar().ToString());
+                TiennhapSPtext.Text = ct.ToString();
+
+                Cnn.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi hedem.12xF4 ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+        }
+        private void DemDanhThu()
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string tamp = "SELECT SUM(Tongtien) FROM [dbo].[Hoadon]";
+                Cmd = new SqlCommand(tamp, Cnn);
+                int ct = int.Parse(Cmd.ExecuteScalar().ToString());
+                Danhthutext.Text = ct.ToString();
+
+                Cnn.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi hedem.13xF4 ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+        }
+        #endregion=======================================================
 
         private void Refresh_button_Click(object sender, EventArgs e)
         {
