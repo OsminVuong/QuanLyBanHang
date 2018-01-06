@@ -528,8 +528,8 @@ namespace Quanlybanhang
             DemTiennhap();
             DemSLHientai();
             DemSLSP();
-            NhaCCitnhat();
-            NhaCCnhieunhat();
+            // NhaCCitnhat();
+           //  NhaCCnhieunhat();
         }
         private void DemNV()
         {
@@ -814,8 +814,92 @@ namespace Quanlybanhang
 
         private void TTHD_Click_Click(object sender, EventArgs e)
         {
-            
+            if (MaKH_HD.Text.Length > 3 && DemKH(MaKH_HD.Text) == false)
+            {
+                MessageBox.Show("'Mã Khách Hàng' không tồn tại !", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                if (MaKH_HD.Text.Length < 4)
+                {
+                    MessageBox.Show("Lỗi: 'Mã Khách Hàng ' ít nhất 4 Ký Tự!", "Thống Báo Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    Load_GridKH();
+                }
+            }
         }
+        private bool DemKH(string _MaKH)
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string tamp = "SELECT COUNT(*) FROM [dbo].[ChitietKH] WHERE MaKH=@Ma";
+                Cmd = new SqlCommand(tamp, Cnn);
+                Cmd.Parameters.Add(new SqlParameter("@Ma", _MaKH));
+                int ct = int.Parse(Cmd.ExecuteScalar().ToString());
+                if (ct == 1)
+                {
+                    return true;
+                }
+                Cnn.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi hedemx3", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+            return false;
+        }
+
+
+
+        private bool KiemTraKH(string _MaKH)
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string tamp = "SELECT COUNT(*) FROM [dbo].[ChitietKH] WHERE MaKH=@Ma";
+                Cmd = new SqlCommand(tamp, Cnn);
+                Cmd.Parameters.Add(new SqlParameter("@Ma", _MaKH));
+                int ct = int.Parse(Cmd.ExecuteScalar().ToString());
+                if (ct == 1)
+                {
+                    return true;
+                }
+                Cnn.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi hedem_kh", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+            return false;
+        }
+
+        private void Load_GridKH()
+        {
+            SqlConnection Cnn = db._DbContext();
+            try
+            {
+                Cnn.Open();
+                string sql = "SELECT [MaHD] as [Mã Hóa Đơn],[HotenKH] as [Tên Khách Hàng],[Tongtien] as [Tổng Thanh Toán] FROM [dbo].[Hoadon] H INNER JOIN [dbo].[ChitietKH] C ON H.MaKH=C.MaKH where C.MaKH=@MaKH ORDER BY MaHD ASC";
+                Cmd = new SqlCommand(sql, Cnn);
+                Cmd.Parameters.Add(new SqlParameter("@MaKH", MaKH_HD.Text));
+                da = new SqlDataAdapter(Cmd);
+                DataTable Table = new DataTable();
+                da.Fill(Table);
+                //DataGView1.AutoGenerateColumns = false;
+                Data_View_HDKH.DataSource = Table;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi DataGidView.3xf4");
+            }
+        
+
+    }
         
         private void XoaAc_button_Click(object sender, EventArgs e)
         {
