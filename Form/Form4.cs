@@ -119,8 +119,10 @@ namespace Quanlybanhang
 
         private void SetAc_button_Click_1(object sender, EventArgs e)
         {
-           
-          
+            // cai dat acc 
+            Form17 f17 = new Form17();
+            f17.Show();
+
         }
 
         
