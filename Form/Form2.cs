@@ -218,7 +218,8 @@ namespace Quanlybanhang
         // xem thống kê
         private void Thongkef2_Click(object sender, EventArgs e)
         {
-            
+            Form7 Frm7 = new Form7(IDtext.Text);
+            Frm7.Show();
         }
 
         private void IDtext_Click(object sender, EventArgs e)
