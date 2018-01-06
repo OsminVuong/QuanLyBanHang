@@ -83,6 +83,18 @@
     <Compile Include="Form\Form17.designer.cs">
       <DependentUpon>Form17.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\Form18.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form18.designer.cs">
+      <DependentUpon>Form18.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form19.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form19.designer.cs">
+      <DependentUpon>Form19.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\Form1SplashCreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +132,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Form17.resx">
       <DependentUpon>Form17.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form18.resx">
+      <DependentUpon>Form18.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form19.resx">
+      <DependentUpon>Form19.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Form1SplashCreen.resx">
       <DependentUpon>Form1SplashCreen.cs</DependentUpon>

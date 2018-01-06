@@ -28,3 +28,5 @@ D:\Github\Quanlybanhang\obj\Debug\Quanlybanhang.Form14.resources
 D:\Github\Quanlybanhang\obj\Debug\Quanlybanhang.Form15.resources
 D:\Github\Quanlybanhang\obj\Debug\Quanlybanhang.Form16.resources
 D:\Github\Quanlybanhang\obj\Debug\Quanlybanhang.Form17.resources
+D:\Github\Quanlybanhang\obj\Debug\Quanlybanhang.Form18.resources
+D:\Github\Quanlybanhang\obj\Debug\Quanlybanhang.Form19.resources
