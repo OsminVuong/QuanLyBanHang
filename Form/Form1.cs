@@ -128,8 +128,8 @@ namespace Quanlybanhang
                         }
                         if (x == 2)
                         {
-                            MessageBox.Show("x" + x + "x", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
-                            LoadnewForm4();
+                            //MessageBox.Show("x" + x + "x", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                            LoadnewForm3();
                         }
                         if (x == 3)
                         {
@@ -175,12 +175,12 @@ namespace Quanlybanhang
         //------------------------- Show Form 3 -----------------------------------
         private void LoadnewForm3()
         {
-            //Form3 frm3 = new Form3(Taikhoan.Text);
-            //this.Visible = false;
-            //if ((new Form3(Taikhoan.Text)).ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            //{ this.Visible = true; }
-            //frm3.Show();
-            //this.Close();
+            Form3 frm3 = new Form3(Taikhoan.Text);
+            this.Visible = false;
+            if ((new Form3(Taikhoan.Text)).ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            { this.Visible = true; }
+            frm3.Show();
+            this.Close();
         }
         //-------------------------------- Show Form 4 -----------------------------
         private void LoadnewForm4()

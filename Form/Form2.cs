@@ -175,15 +175,39 @@ namespace Quanlybanhang
         // Xem thông tin khách hàng
         private void TTKH_Click(object sender, EventArgs e)
         {
-            
+            if (MakHtext.Text.Length > 3 && DemKH(MakHtext.Text) == false)
+            {
+                MessageBox.Show("'Mã Khách Hàng' không tồn tại !", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                if (MakHtext.Text.Length < 4)
+                {
+                    MessageBox.Show("Lỗi: 'Mã Khách Hàng ' ít nhất 4 Ký Tự!", "Thống Báo Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    DialogResult Dlr = MessageBox.Show("Bạn có muốn xem Thông Tin Khách Hàng?", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (Dlr == DialogResult.Yes)
+                    {
+                        Form5 Frm5 = new Form5(MakHtext.Text);
+                        Frm5.Show();
+                    }
+                }
+            }
         }
 
         // Báo lỗi Hóa đơn
         private void Error_Button_Click(object sender, EventArgs e)
         {
-           
-          
-        
+            DialogResult Dlr = MessageBox.Show("Bạn có muốn Báo Lỗi Hóa Đơn?", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (Dlr == DialogResult.Yes)
+            {
+                Form6 Frm6 = new Form6();
+                Frm6.Show();
+            }
+
+
         }
         // làm mới textbox mã KH
         private void Ref_button_Click(object sender, EventArgs e)
@@ -194,7 +218,8 @@ namespace Quanlybanhang
         // xem thống kê
         private void Thongkef2_Click(object sender, EventArgs e)
         {
-            
+            Form7 Frm7 = new Form7(IDtext.Text);
+            Frm7.Show();
         }
 
         private void IDtext_Click(object sender, EventArgs e)
