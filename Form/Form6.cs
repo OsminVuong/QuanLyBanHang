@@ -33,15 +33,23 @@ namespace Quanlybanhang
 
         private void Er_button_Click(object sender, EventArgs e)
         {
-            Update_Tongtien_HD(MaHDtext.Text);
-            MessageBox.Show("Thành Công!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
+            if(KT_HD(MaHDtext.Text)==true)
+            { 
+                Update_Tongtien_HD(MaHDtext.Text);
+                MessageBox.Show("Thành Công!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Mã HÓA ĐƠN không tồn tại!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+    }
 
         private void Update_Tongtien_HD(string _MaDH)
         {
-            SqlConnection Cnn = db._DbContext();
+            
             try
             {
+                SqlConnection Cnn = db._DbContext();
                 Cnn.Open();
                 string themHD = "UPDATE [dbo].[Hoadon] SET [Tongtien] = @Tongtien WHERE MaHD = @MaHD";
                 Cmd = new SqlCommand(themHD, Cnn);
@@ -57,5 +65,29 @@ namespace Quanlybanhang
 
             }
         }
-    }
+        private bool KT_HD(string _MaDH)
+        {
+
+            
+            try
+            {
+                SqlConnection Cnn = db._DbContext();
+                Cnn.Open();
+                string tamp = "SELECT COUNT(*) FROM [dbo].[Hoadon] WHERE MaHD=@Ma";
+                Cmd = new SqlCommand(tamp, Cnn);
+                Cmd.Parameters.Add(new SqlParameter("@Ma",_MaDH));
+                int ct = int.Parse(Cmd.ExecuteScalar().ToString());
+                if (ct == 1)
+                {
+                    return true;
+                }
+                Cnn.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi hedem hoa don", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+            return false;
+        }
+        }
 }

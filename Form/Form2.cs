@@ -200,9 +200,14 @@ namespace Quanlybanhang
         // Báo lỗi Hóa đơn
         private void Error_Button_Click(object sender, EventArgs e)
         {
-           
-          
-        
+            DialogResult Dlr = MessageBox.Show("Bạn có muốn Báo Lỗi Hóa Đơn?", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (Dlr == DialogResult.Yes)
+            {
+                Form6 Frm6 = new Form6();
+                Frm6.Show();
+            }
+
+
         }
         // làm mới textbox mã KH
         private void Ref_button_Click(object sender, EventArgs e)
