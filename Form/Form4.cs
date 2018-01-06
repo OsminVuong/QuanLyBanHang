@@ -323,6 +323,7 @@ namespace Quanlybanhang
 
 
 
+
         private void CloseForm4_Click(object sender, EventArgs e)
         {
             DialogResult Cl_Ap;
