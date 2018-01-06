@@ -110,7 +110,7 @@ namespace Quanlybanhang
 
         private void ThemAc_button_Click(object sender, EventArgs e)
         {
-           
+            // xoa nhan acc
         }
 
         private void SetAc_button_Click_1(object sender, EventArgs e)
