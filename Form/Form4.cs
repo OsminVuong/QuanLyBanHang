@@ -119,7 +119,8 @@ namespace Quanlybanhang
 
         private void SetAc_button_Click_1(object sender, EventArgs e)
         {
-            
+           
+          
         }
 
         
@@ -141,6 +142,9 @@ namespace Quanlybanhang
         
         private void XoaAc_button_Click(object sender, EventArgs e)
         {
+            //xoa accounts
+            Form16 f16 = new Form16();
+            f16.Show();
         }
     }
 }
