@@ -43,6 +43,7 @@ namespace Quanlybanhang
         {
             _Ngaythang.Text = year + "-" + month + "-" + day;
             ShowNV();
+            // Tự động cập nhật mã HD
             ShowMaHD();
 
         }
