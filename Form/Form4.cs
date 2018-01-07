@@ -768,6 +768,10 @@ namespace Quanlybanhang
         private void Refresh_button_Click(object sender, EventArgs e)
         {
             // reset 
+            ShowNV();
+            Show_Load();
+            Show_Grid();
+            Load_Combobox();
         }
 
        
