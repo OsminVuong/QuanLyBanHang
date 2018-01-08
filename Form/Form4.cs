@@ -191,6 +191,45 @@ namespace Quanlybanhang
 
 
         #endregion================================================================
+        #region======== Truy cập thông tin NV===========
+        //-- Đọc dữ theo tuần tự từng dòng và truy xuất chỉ số cột
+        private string Xuat_kq(SqlDataReader kq)
+        {
+            StringBuilder strb = new StringBuilder();
+            while (kq.Read())
+            {
+
+                //-- Truy chỉ số cột
+                for (int i = 0; i < kq.FieldCount; i++)
+                    strb.Append(kq[i].ToString() + (i == kq.FieldCount - 1 ? "" : ":"));
+                strb.AppendLine();
+            }
+            return strb.ToString();
+        }
+        //--- Tải tên NV lên Lable
+        private void ShowNV()
+        {
+
+            try
+            {
+                SqlConnection Cnn = db._DbContext();
+                Cnn.Open();
+                string tamp = "select HotenNV from NHANVIEN WHERE MaNV = '" + IDtext.Text + "' ";
+                Cmd = new SqlCommand(tamp, Cnn);
+                SqlDataReader dr = Cmd.ExecuteReader();
+                TenNVtext.Text = Xuat_kq(dr);
+                Cnn.Close();
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Lỗi GUI ADmin!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+        }
+
+
+
+        #endregion===========================================================
 
         #region========= Combobox =========================
         private void Load_Combobox()
@@ -860,6 +899,7 @@ namespace Quanlybanhang
             }
             catch (Exception)
             {
+                //bat lỗi
                 MessageBox.Show("Lỗi DataGidView.3xf4");
             }
         
