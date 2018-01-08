@@ -191,7 +191,6 @@ namespace Quanlybanhang
 
 
         #endregion================================================================
-
         #region======== Truy cập thông tin NV===========
         //-- Đọc dữ theo tuần tự từng dòng và truy xuất chỉ số cột
         private string Xuat_kq(SqlDataReader kq)
@@ -210,7 +209,7 @@ namespace Quanlybanhang
         //--- Tải tên NV lên Lable
         private void ShowNV()
         {
-            
+
             try
             {
                 SqlConnection Cnn = db._DbContext();
@@ -231,6 +230,7 @@ namespace Quanlybanhang
 
 
         #endregion===========================================================
+
         #region========= Combobox =========================
         private void Load_Combobox()
         {
@@ -899,6 +899,7 @@ namespace Quanlybanhang
             }
             catch (Exception)
             {
+                //bat lỗi
                 MessageBox.Show("Lỗi DataGidView.3xf4");
             }
         
